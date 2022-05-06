@@ -1,13 +1,13 @@
-package com.example.cicddemo;
+package com.demo.chatting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CicdDemoApplication {
+public class ChattingDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CicdDemoApplication.class, args);
+		SpringApplication.run(ChattingDemoApplication.class, args);
 	}
 
 }
