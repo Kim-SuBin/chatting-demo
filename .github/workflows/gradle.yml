@@ -48,4 +48,4 @@ jobs:
         aws-region: ap-northeast-2
     
     - name: Upload to S3
-      run: aws s3 sp --region ap-northeast-2 ./project-build.zip s3://subin-demo-deploy-bucket/
+      run: aws s3 cp --region ap-northeast-2 ./project-build.zip s3://subin-demo-deploy-bucket/
