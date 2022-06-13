@@ -1,13 +1,13 @@
-package com.demo.chatting;
+package com.demo.chatting.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChattingDemoApplication {
+public class ApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ChattingDemoApplication.class, args);
+		SpringApplication.run(ApiApplication.class, args);
 	}
 
 }
