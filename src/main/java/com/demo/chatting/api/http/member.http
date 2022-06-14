@@ -1,0 +1,17 @@
+### 회원가입
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "name" : "name",
+  "password" : "test1234"
+}
+
+### 회원가입2
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "name" : "name2",
+  "password" : "test1234"
+}
