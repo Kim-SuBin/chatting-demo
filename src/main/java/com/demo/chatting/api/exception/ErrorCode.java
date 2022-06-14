@@ -9,7 +9,9 @@ public enum ErrorCode {
     EXTERNAL_SERVER_ERROR(501, "C002", "외부 API 통신 에러입니다."),
 
     // Member
-    NAME_DUPLICATION(400, "M001", "이미 등록된 닉네임입니다.");
+    DUPLICATE_NAME(400, "M001", "이미 등록된 닉네임입니다."),
+    INVALID_LOGIN_INPUT(401, "M002", "잘못된 로그인 입력 값입니다."),
+    ;
 
     private final int status;
     private final String code;
