@@ -12,32 +12,48 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class MemberService {
 
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
     Member member;
 
-    public void validateDuplicateMember(String name) {
-        Optional<Member> findMember = memberRepository.findByName(name);
-        log.info("찾은 멤버 정보 : " + findMember);
+    /**
+     * 이름 중복 확인
+     *
+     * @param nickName 멤버가 설정한 이름
+     */
+    public void validateDuplicateMember(String nickName) {
+        Optional<Member> findMember = memberRepository.findByNickName(nickName);
         if (findMember.isPresent()) {
-            throw new CustomException(ErrorCode.DUPLICATE_NAME);
+            throw new CustomException(ErrorCode.DUPLICATE_NICKNAME);
         }
     }
 
+    /**
+     * 멤버 생성
+     *
+     * @param dto 멤버 회원가입 정보
+     * @return 멤버 인덱스
+     */
     public Long createMember(MemberDto.Member dto) {
-        validateDuplicateMember(dto.getName());
-        member = new Member(dto.getName(), passwordEncoder.encode(dto.getPassword()));
+        validateDuplicateMember(dto.getNickName());
+        member = new Member(dto.getNickName(), passwordEncoder.encode(dto.getPassword()));
         memberRepository.save(member);
         return member.getId();
     }
 
+    /**
+     * 멤버 로그인
+     *
+     * @param dto 멤버 로그인 정보
+     * @return 멤버 인덱스
+     */
     public Long loginMember(MemberDto.Member dto) {
-        member = memberRepository.findByName(dto.getName()).orElseThrow(() -> new CustomException(ErrorCode.INVALID_LOGIN_INPUT));
+        member = memberRepository.findByNickName(dto.getNickName()).orElseThrow(() -> new CustomException(ErrorCode.INVALID_LOGIN_INPUT));
         if (!passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_LOGIN_INPUT);
         }

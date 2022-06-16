@@ -8,7 +8,7 @@ public class MemberDto {
     @AllArgsConstructor
     @Getter
     public static class Member {
-        private String name;
+        private String nickName;
         private String password;
     }
 }
