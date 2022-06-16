@@ -17,9 +17,11 @@ public class Member extends BaseTimeEntity {
     @Column(name = "member_id")
     private Long id;
 
+    @Column(nullable = false)
     private String nickName;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Json 결과로 출력하지 않을 데이터 표시
+    @Column(nullable = false)
     private String password;
 
     @Builder

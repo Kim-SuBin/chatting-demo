@@ -1,44 +1,60 @@
-### 회원가입
+### 잘못된 url 호출
 POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
-  "name" : "name",
-  "password" : "test1234"
+  "nickName": "nickName"
+}
+
+### 회원가입 실패
+POST http://localhost:8080/api/v1/member/signup
+Content-Type: application/json
+
+{
+  "nickName": "nickName"
+}
+
+### 회원가입
+POST http://localhost:8080/api/v1/member/signup
+Content-Type: application/json
+
+{
+  "nickName": "nickName",
+  "password": "test1234"
 }
 
 ### 회원가입2
-POST http://localhost:8080/api/member/signup
+POST http://localhost:8080/api/v1/member/signup
 Content-Type: application/json
 
 {
-  "name" : "name2",
-  "password" : "test1234"
+  "nickName": "nickName2",
+  "password": "test1234"
 }
 
 ### 로그인
-POST http://localhost:8080/api/member/login
+POST http://localhost:8080/api/v1/member/login
 Content-Type: application/json
 
 {
-  "name" : "name",
-  "password" : "test1234"
+  "nickName": "nickName",
+  "password": "test1234"
 }
 
 ### 로그인 - 네임 오류
-POST http://localhost:8080/api/member/login
+POST http://localhost:8080/api/v1/member/login
 Content-Type: application/json
 
 {
-  "name" : "namee",
-  "password" : "test1234"
+  "nickName": "",
+  "password": "test1234"
 }
 
 ### 로그인 - 패스워드 오류
-POST http://localhost:8080/api/member/login
+POST http://localhost:8080/api/v1/member/login
 Content-Type: application/json
 
 {
-  "name" : "name",
-  "password" : "test12"
+  "nickName": "nickName",
+  "password": "test12"
 }
