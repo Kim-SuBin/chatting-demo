@@ -1,7 +1,7 @@
 package com.demo.chatting.api.service;
 
 import com.demo.chatting.api.domain.Member;
-import com.demo.chatting.api.dto.MemberDto;
+import com.demo.chatting.api.dto.member.MemberDto;
 import com.demo.chatting.api.exception.CustomException;
 import com.demo.chatting.api.exception.ErrorCode;
 import com.demo.chatting.api.repository.MemberRepository;
@@ -39,7 +39,7 @@ public class MemberService {
      * @param dto 멤버 회원가입 정보
      * @return 멤버 인덱스
      */
-    public Long createMember(MemberDto.Member dto) {
+    public Long createMember(MemberDto dto) {
         validateDuplicateMember(dto.getNickName());
         member = new Member(dto.getNickName(), passwordEncoder.encode(dto.getPassword()));
         memberRepository.save(member);
@@ -52,7 +52,7 @@ public class MemberService {
      * @param dto 멤버 로그인 정보
      * @return 멤버 인덱스
      */
-    public Long loginMember(MemberDto.Member dto) {
+    public Long loginMember(MemberDto dto) {
         member = memberRepository.findByNickName(dto.getNickName()).orElseThrow(() -> new CustomException(ErrorCode.INVALID_LOGIN_INPUT));
         if (!passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_LOGIN_INPUT);
