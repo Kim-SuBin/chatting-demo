@@ -1,11 +1,11 @@
-package com.demo.chatting.api.dto.room;
+package com.demo.chatting.api.command.room;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CreateRoomDto {
+public class CreateRoomCommand {
     private String roomName;
     private Long ownerId;
     private Long maxParticipants;

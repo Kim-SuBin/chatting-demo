@@ -1,4 +1,4 @@
-package com.demo.chatting.api.dto.response;
+package com.demo.chatting.api.command.response;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
