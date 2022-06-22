@@ -1,9 +1,12 @@
 package com.demo.chatting.api.controller;
 
 import com.demo.chatting.api.command.response.ApiResponse;
+import com.demo.chatting.api.command.response.EmptyJsonResponse;
 import com.demo.chatting.api.command.room.CreateRoomCommand;
 import com.demo.chatting.api.command.room.GetAllRoomCommand;
 import com.demo.chatting.api.domain.Room;
+import com.demo.chatting.api.exception.CustomException;
+import com.demo.chatting.api.exception.ErrorCode;
 import com.demo.chatting.api.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -36,5 +40,15 @@ public class RoomController {
     public ApiResponse<Room> getRoom(@PathVariable Long roomId) {
         log.info("특정 방 조회");
         return ApiResponse.success(roomService.getRoom(roomId));
+    }
+
+    @DeleteMapping("{roomId}")
+    public ApiResponse<EmptyJsonResponse> deleteRoom(@PathVariable Long roomId, @RequestParam Long memberId) {
+        log.info("특정 방 삭제");
+        Room room = roomService.getRoom(roomId);
+        if (!Objects.equals(memberId, room.getOwnerId())) {
+            throw new CustomException(ErrorCode.HANDLE_ACCESS_DENIED);
+        }
+        return ApiResponse.success(roomService.deleteRoom(roomId));
     }
 }

@@ -8,6 +8,16 @@ Content-Type: application/json
   "maxParticipants": 30
 }
 
+### 방 생성2
+POST http://localhost:8080/api/v1/room
+Content-Type: application/json
+
+{
+"roomName": "room name",
+"ownerId": 2,
+"maxParticipants": 30
+}
+
 ### 방 생성 - maxParticipants 설정 X
 POST http://localhost:8080/api/v1/room
 Content-Type: application/json
@@ -22,3 +32,9 @@ GET http://localhost:8080/api/v1/room
 
 ### 특정 방 조회
 GET http://localhost:8080/api/v1/room/1
+
+### 특정 방 삭제
+DELETE http://localhost:8080/api/v1/room/1?memberId=1
+
+### 특정 방 삭제2
+DELETE http://localhost:8080/api/v1/room/1?memberId=2

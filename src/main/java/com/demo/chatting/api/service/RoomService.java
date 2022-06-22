@@ -1,5 +1,6 @@
 package com.demo.chatting.api.service;
 
+import com.demo.chatting.api.command.response.EmptyJsonResponse;
 import com.demo.chatting.api.command.room.CreateRoomCommand;
 import com.demo.chatting.api.command.room.GetAllRoomCommand;
 import com.demo.chatting.api.domain.Member;
@@ -44,5 +45,10 @@ public class RoomService {
 
     public Room getRoom(Long roomId) {
         return roomRepository.findById(roomId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_ROOM));
+    }
+
+    public EmptyJsonResponse deleteRoom(Long roomId) {
+        roomRepository.deleteById(roomId);
+        return null;
     }
 }
