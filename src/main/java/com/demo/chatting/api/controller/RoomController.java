@@ -3,6 +3,7 @@ package com.demo.chatting.api.controller;
 import com.demo.chatting.api.command.response.ApiResponse;
 import com.demo.chatting.api.command.room.CreateRoomCommand;
 import com.demo.chatting.api.command.room.GetAllRoomCommand;
+import com.demo.chatting.api.domain.Room;
 import com.demo.chatting.api.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,14 @@ public class RoomController {
     }
 
     @GetMapping("")
-    public ApiResponse<List<GetAllRoomCommand>> getRoom() {
+    public ApiResponse<List<GetAllRoomCommand>> getAllRoom() {
         log.info("모든 방 조회");
-        return ApiResponse.success(roomService.getRoom());
+        return ApiResponse.success(roomService.getAllRoom());
+    }
+
+    @GetMapping("/{roomId}")
+    public ApiResponse<Room> getRoom(@PathVariable Long roomId) {
+        log.info("특정 방 조회");
+        return ApiResponse.success(roomService.getRoom(roomId));
     }
 }

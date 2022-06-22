@@ -13,13 +13,13 @@ public class GetAllRoomCommand {
     private String roomName;
     private Long ownerId;
     private Long maxParticipants;
-    private LocalDateTime createAt;
+    private LocalDateTime modifiedAt;
 
     public GetAllRoomCommand(Room room) {
         this.id = room.getId();
         this.roomName = room.getRoomName();
         this.ownerId = room.getOwnerId();
         this.maxParticipants = room.getMaxParticipants();
-        this.createAt = room.getCreatedAt();
+        this.modifiedAt = room.getModifiedAt();
     }
 }

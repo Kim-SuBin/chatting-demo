@@ -14,6 +14,9 @@ public enum ErrorCode {
     DUPLICATE_NICKNAME(400, "M001", "이미 등록된 닉네임입니다."),
     INVALID_LOGIN_INPUT(400, "M002", "잘못된 로그인 입력 값입니다."),
     NOT_FOUND_MEMBER(400, "M003", "존재하지 않는 회원입니다."),
+
+    // Room
+    NOT_FOUND_ROOM(400, "R001", "존재하지 않는 채팅방입니다.");
     ;
 
     private final int status;

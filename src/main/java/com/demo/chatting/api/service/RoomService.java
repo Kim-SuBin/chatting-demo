@@ -25,12 +25,12 @@ public class RoomService {
 
     public Long createRoom(CreateRoomCommand command) {
         Member member = memberRepository.findById(command.getOwnerId()).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_MEMBER));
-        Room room = new Room(command.getRoomName(), command.getOwnerId(), command.getMaxParticipants(), 0L, member);
+        Room room = new Room(command.getRoomName(), command.getOwnerId(), command.getMaxParticipants(), member);
         roomRepository.save(room);
         return room.getId();
     }
 
-    public List<GetAllRoomCommand> getRoom() {
+    public List<GetAllRoomCommand> getAllRoom() {
         List<Room> rooms = roomRepository.findAll();
         List<GetAllRoomCommand> allRoomCommands = new ArrayList<>();
 
@@ -39,8 +39,10 @@ public class RoomService {
             allRoomCommands.add(getAllRoomCommand);
         }
 
-        log.info("> allRoomCommands Size : " + allRoomCommands.size());
-
         return allRoomCommands;
+    }
+
+    public Room getRoom(Long roomId) {
+        return roomRepository.findById(roomId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_ROOM));
     }
 }

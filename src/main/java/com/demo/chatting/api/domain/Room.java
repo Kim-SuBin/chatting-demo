@@ -23,18 +23,15 @@ public class Room extends BaseTimeEntity {
 
     private Long maxParticipants;
 
-    private Long lastMessageId;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "rm_room_id")
     private List<RoomMember> roomMembers;
 
     @Builder
-    public Room(String roomName, Long ownerId, Long maxParticipants, Long lastMessageId, Member member) {
+    public Room(String roomName, Long ownerId, Long maxParticipants, Member member) {
         this.roomName = roomName;
         this.ownerId = ownerId;
-        this.maxParticipants = maxParticipants != null ? maxParticipants : 30;
-        this.lastMessageId = lastMessageId;
+        this.maxParticipants = maxParticipants != null ? maxParticipants : 30L;
         this.roomMembers = new ArrayList<>();
 
         RoomMember roomMember = new RoomMember(this.id, member);
