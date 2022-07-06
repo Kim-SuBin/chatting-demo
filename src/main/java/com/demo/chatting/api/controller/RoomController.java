@@ -4,6 +4,7 @@ import com.demo.chatting.api.command.response.ApiResponse;
 import com.demo.chatting.api.command.response.EmptyJsonResponse;
 import com.demo.chatting.api.command.room.CreateRoomCommand;
 import com.demo.chatting.api.command.room.GetAllRoomCommand;
+import com.demo.chatting.api.command.room.UpdateRoomCommand;
 import com.demo.chatting.api.domain.Room;
 import com.demo.chatting.api.exception.CustomException;
 import com.demo.chatting.api.exception.ErrorCode;
@@ -50,5 +51,16 @@ public class RoomController {
             throw new CustomException(ErrorCode.HANDLE_ACCESS_DENIED);
         }
         return ApiResponse.success(roomService.deleteRoom(roomId));
+    }
+
+    @PutMapping("{roomId}")
+    public ApiResponse<EmptyJsonResponse> updateRoom(@PathVariable Long roomId, @RequestParam Long memberId,
+                                                     @RequestBody @Valid UpdateRoomCommand command) {
+        log.info("특정 방 수정");
+        Room room = roomService.getRoom(roomId);
+        if (!Objects.equals(memberId, room.getOwnerId())) {
+            throw new CustomException(ErrorCode.HANDLE_ACCESS_DENIED);
+        }
+        return ApiResponse.success(roomService.updateRoom(room, command));
     }
 }

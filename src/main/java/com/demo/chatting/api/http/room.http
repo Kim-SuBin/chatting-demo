@@ -38,3 +38,54 @@ DELETE http://localhost:8080/api/v1/room/1?memberId=1
 
 ### 특정 방 삭제2
 DELETE http://localhost:8080/api/v1/room/1?memberId=2
+
+### 특정 방 수정 - 이름 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=1
+Content-Type: application/json
+
+{
+  "roomName": "room name update"
+}
+
+### 특정 방 수정 - 방 최대 인원 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=1
+Content-Type: application/json
+
+{
+  "maxParticipants": 5
+}
+
+### 특정 방 수정 - 방 주인 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=1
+Content-Type: application/json
+
+{
+  "ownerId": 2
+}
+
+### 특정 방 수정 - 이름 및 방 최대 인원 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=1
+Content-Type: application/json
+
+{
+  "roomName": "room name update 2",
+  "maxParticipants": 10
+}
+
+### 특정 방 수정 - 이름 및 방 주인 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=2
+Content-Type: application/json
+
+{
+  "roomName": "room name update 2",
+  "ownerId": 1
+}
+
+### 특정 방 수정 - 방 주인 및 방 최대 인원 변경
+PUT http://localhost:8080/api/v1/room/1?memberId=1
+Content-Type: application/json
+
+{
+  "ownerId": 2,
+  "maxParticipants": 15
+}
